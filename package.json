@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "deploy": "npm run build && npm run export && npm run gh-pages"
   },
   "dependencies": {
     "archiver": "^7.0.1",
@@ -17,6 +19,8 @@
   },
   "devDependencies": {
     "eslint": "^9",
-    "eslint-config-next": "16.0.3"
-  }
+    "eslint-config-next": "16.0.3",
+    "gh-pages": "^6.1.1"
+  },
+  "homepage": "https://leonardo-2025.github.io/Document-Organizer"
 }
