@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import { readdir, mkdir, rename, stat } from 'fs/promises';
 import { join, extname } from 'path';
 
+
+export const runtime = 'nodejs';      // tells Next to use a serverless function
+export const dynamic = 'force-dynamic'; // ensures the route runs at request time
 export async function POST(request) {
     try {
         const { sessionId, groupingOption, selectedExtensions } = await request.json();

@@ -3,6 +3,10 @@ import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
 import { v4 as uuidv4 } from 'uuid';
 
+export const runtime = 'nodejs';      // tells Next to use a serverless function
+export const dynamic = 'force-dynamic'; // ensures the route runs at request time
+
+
 // Disable default body parser to handle large files
 export const config = {
     api: {

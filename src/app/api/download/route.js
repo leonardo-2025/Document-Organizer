@@ -4,6 +4,8 @@ import { stat } from 'fs/promises';
 import { join } from 'path';
 import archiver from 'archiver';
 
+export const runtime = 'nodejs';      // tells Next to use a serverless function
+export const dynamic = 'force-dynamic'; // ensures the route runs at request time
 export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const sessionId = searchParams.get('sessionId');
