@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import { rm } from 'fs/promises';
 import { join } from 'path';
 
+export const runtime = 'nodejs';      // tells Next to use a serverless function
+export const dynamic = 'force-dynamic'; // ensures the route runs at request time
+
 export async function POST(request) {
     try {
         const { sessionId } = await request.json();

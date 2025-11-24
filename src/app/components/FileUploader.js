@@ -19,11 +19,8 @@ export default function FileUploader({ onFilesSelected, isUploading }) {
         e.preventDefault();
         setIsDragging(false);
         if (isUploading) return;
-
         const files = Array.from(e.dataTransfer.files);
-        if (files.length > 0) {
-            onFilesSelected(files);
-        }
+        if (files.length > 0) onFilesSelected(files);
     };
 
     const handleClick = () => {
@@ -32,9 +29,7 @@ export default function FileUploader({ onFilesSelected, isUploading }) {
 
     const handleFileInput = (e) => {
         const files = Array.from(e.target.files);
-        if (files.length > 0) {
-            onFilesSelected(files);
-        }
+        if (files.length > 0) onFilesSelected(files);
     };
 
     return (
@@ -56,7 +51,7 @@ export default function FileUploader({ onFilesSelected, isUploading }) {
 
             {isUploading ? (
                 <div className="loading-content">
-                    <div className="spinner"></div>
+                    <div className="spinner" />
                     <h3>Uploading your files...</h3>
                     <p>Please wait while we secure your documents.</p>
                 </div>
@@ -69,10 +64,18 @@ export default function FileUploader({ onFilesSelected, isUploading }) {
                             <line x1="12" y1="3" x2="12" y2="15" />
                         </svg>
                     </div>
-
                     <h3>Drop files here or click to upload</h3>
-                    <p>Support for Documents (PDF, DOCX, TXT) and Videos (MP4, MKV)</p>
+                    <p>Supports all file types – any extension is accepted.</p>
                     <p className="limit">Max file size: 10GB total</p>
+                    {/* Mobile-friendly button */}
+                    <button
+                        type="button"
+                        onClick={handleClick}
+                        className="mobile-upload-btn"
+                        disabled={isUploading}
+                    >
+                        Choose Files
+                    </button>
                 </>
             )}
 
@@ -89,39 +92,16 @@ export default function FileUploader({ onFilesSelected, isUploading }) {
           position: relative;
           overflow: hidden;
         }
-
         .upload-zone:hover:not(.uploading), .upload-zone.dragging {
           border-color: var(--accent-primary);
           background: rgba(216, 180, 254, 0.05);
           transform: scale(1.01);
         }
-
-        .upload-zone.uploading {
-          cursor: default;
-          border-style: solid;
-        }
-
-        .icon {
-          color: var(--accent-primary);
-          margin-bottom: 1.5rem;
-        }
-
-        h3 {
-          font-size: 1.5rem;
-          margin-bottom: 0.5rem;
-          color: var(--text-primary);
-        }
-
-        p {
-          color: var(--text-secondary);
-          margin-bottom: 0.5rem;
-        }
-
-        .limit {
-          font-size: 0.8rem;
-          opacity: 0.7;
-        }
-
+        .upload-zone.uploading { cursor: default; border-style: solid; }
+        .icon { color: var(--accent-primary); margin-bottom: 1.5rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-primary); }
+        p { color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .limit { font-size: 0.8rem; opacity: 0.7; }
         .spinner {
           width: 40px;
           height: 40px;
@@ -131,10 +111,18 @@ export default function FileUploader({ onFilesSelected, isUploading }) {
           margin: 0 auto 1.5rem;
           animation: spin 1s linear infinite;
         }
-
-        @keyframes spin {
-          to { transform: rotate(360deg); }
+        .mobile-upload-btn {
+          margin-top: 1rem;
+          padding: 0.6rem 1.2rem;
+          background: var(--accent-primary);
+          color: white;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-size: 1rem;
         }
+        .mobile-upload-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        @keyframes spin { to { transform: rotate(360deg); } }
       `}</style>
         </div>
     );
